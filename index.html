@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>PayProGlobal</title>
+</head>
+<body>
+
+    <div action="#" method="POST" class="form" id="form">
+        <div class="form__row">
+            <span class="form__title">Email verification</span>
+            <span class="form__subtitle">Let’s get started with this simple verification.</span>
+        </div>
+
+        <div class="form__row">
+            <label class="form__label" for="email-input">Email verification</label>
+            <input id="email-input" type="email" placeholder="example@mail.com" autocomplete="off" required>
+            <span id="email-error" class="form__error">Looks like it’s not an email. Check it.</span>
+        </div>
+
+        <div class="form__row">
+            <label class="form__label" for="url-input">Email verification</label>
+            <input id="url-input" type="text" placeholder="https://" autocomplete="off" required>
+            <span id="url-error" class="form__error">What about security bro?</span>
+        </div>
+
+        <button class="button" type="submit" id="submit-button" disabled>Move forward</button>
+        <!-- <button class="button" type="button" id="submit-button">Move forward</button> -->
+    </div>
+    
+</body>
+<script src="main.js"></script>
+</html>
