@@ -1,0 +1,140 @@
+* {
+    line-height: 1.2;
+    color: #373747;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+.body-background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: center / contain no-repeat url('./img/bckgr.png');
+}
+
+.body-background::before {
+    background-color: #F9D7AF;
+    width: 840px;
+    left: 40%;
+    top: 30%;
+    opacity: 70%;
+}
+
+input {
+    font-size: 14px;
+    padding: 12px 16px;
+    outline: 1px solid #D5DCE3;
+    border: none;
+    border-radius: 4px;
+    width: 100%;
+}
+
+input::placeholder {
+    color: #8691A2;
+}
+
+input:focus {
+    outline: 1px solid #2774E6;
+}
+
+input[data-error] {
+    outline: 1px solid #DB4732;
+}
+
+/* button start */
+
+.button {
+    background-color: #2774E6;
+    border: none;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 600;
+    padding: 12px 24px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 0.5s;
+    outline: 0;
+    width: 100%;
+}
+
+.button:hover {
+    background-color: #3980EA;
+}
+
+.button:focus {
+    background-color: #1B69DC;
+}
+
+.button:disabled {
+    background-color: #A3BFE8;
+    cursor: not-allowed;
+}
+
+/* button finish */
+
+/* form start */
+
+.form {
+    padding: 32px 24px;
+    border-radius: 12px;
+    background-color: #fff;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 396px;
+    width: 100%;
+    box-shadow: 0px 8px 16px 0px #5E7BB226;
+}
+
+.form__row {
+    margin-bottom: 24px;
+}
+
+.form__title {
+    display: block;
+    font-size: 32px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.form__subtitle {
+    font-size: 16px;
+    display: block;
+    color: #5C6269;
+}
+
+.form__label {
+    display: block;
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.form__error {
+    display: none;
+    align-items: center;
+    position: relative;
+    margin-top: 8px;
+    font-size: 14px;
+    color: #DB4732;
+}
+
+input[data-error] + .form__error {
+    display: block;
+}
+
+.form__error::before {
+    content: "";
+    display: inline-block;
+    margin-right: 8px;
+    background: center / contain no-repeat url('./img/error.svg');
+    width: 16px;
+    height: 16px;
+}
+
+/* form finish */
