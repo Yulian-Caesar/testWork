@@ -1,8 +1,6 @@
 const URL_HOME = 'https://payproglobal.com/';
 let emailInput = document.getElementById('email-input');
-let emailError = document.getElementById('email-error');
 let urlInput = document.getElementById('url-input');
-let urlError = document.getElementById('url-error');
 let submitButton = document.getElementById('submit-button');
 let form = document.getElementById('form');
 
@@ -11,28 +9,28 @@ let isUrlInputValid = false;
 
 function validateEmailInput() {
     if(emailInput.value !== '' && !emailInput.value.match(/^[A-Za-z\._\-0-9]*[@][A-Za-z]*[\.][a-z]{2,4}$/)) {
-        isInputInvalid(emailError, emailInput, true);
+        isInputInvalid(emailInput, true);
         isEmailInputValid = false;
         return false;
     }
-    isInputInvalid(emailError, emailInput, false);
+    isInputInvalid(emailInput, false);
     isEmailInputValid = true;
 }
 
 function validateUrlInput() {
     if(!urlInput.value.startsWith('https://')) {
-        isInputInvalid(urlError, urlInput, true);
+        isInputInvalid(urlInput, true);
         isUrlInputValid = false;
         return false
     }
     
     try {
         new URL(urlInput.value);
-        isInputInvalid(urlError, urlInput, false);
+        isInputInvalid(urlInput, false);
         isUrlInputValid = true;
         return true;
     } catch (err) {
-        isInputInvalid(urlError, urlInput, true);
+        isInputInvalid(urlInput, true);
         isUrlInputValid = false;
         return false;
     }
