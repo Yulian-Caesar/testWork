@@ -125,7 +125,7 @@ input[data-error] {
 }
 
 input[data-error] + .form__error {
-    display: block;
+    display: flex;
 }
 
 .form__error::before {
