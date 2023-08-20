@@ -1,43 +1,59 @@
 const URL_HOME = 'https://payproglobal.com/';
+const EMAIL_PATTERN = new RegExp(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/);
+const URL_PATTERN = new RegExp('^(https:\\/\\/)'+
+        '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+
+        '((\\d{1,3}\\.){3}\\d{1,3}))'+
+        '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+
+        '(\\?[;&a-z\\d%_.~+=-]*)?'+
+        '(\\#[-a-z\\d_]*)?$','i');
+
 let emailInput = document.getElementById('email-input');
 let urlInput = document.getElementById('url-input');
 let submitButton = document.getElementById('submit-button');
-let form = document.getElementById('form');
 
 let isEmailInputValid = false;
 let isUrlInputValid = false;
 
 function validateEmailInput() {
-    if(emailInput.value !== '' && !emailInput.value.match(/^[A-Za-z\._\-0-9]*[@][A-Za-z]*[\.][a-z]{2,4}$/)) {
-        isInputInvalid(emailInput, true);
+    if (emailInput.value === '') {
+        isErrorShow(emailInput, false);
         isEmailInputValid = false;
-        return false;
     }
-    isInputInvalid(emailInput, false);
-    isEmailInputValid = true;
+
+    if (emailInput.value !== '' && EMAIL_PATTERN.test(emailInput.value)) {
+        isErrorShow(emailInput, false);
+        isEmailInputValid = true;
+    }
+
+    if (emailInput.value !== '' && !EMAIL_PATTERN.test(emailInput.value)) {
+        isErrorShow(emailInput, true);
+        isEmailInputValid = false;
+    }
+
+    isFormValid();
 }
 
 function validateUrlInput() {
-    if(!urlInput.value.startsWith('https://')) {
-        isInputInvalid(urlInput, true);
+    if (urlInput.value === '') {
+        isErrorShow(urlInput, false);
         isUrlInputValid = false;
-        return false
     }
-    
-    try {
-        new URL(urlInput.value);
-        isInputInvalid(urlInput, false);
+
+    if(urlInput.value !== '' && URL_PATTERN.test(urlInput.value)) {
+        isErrorShow(urlInput, false);
         isUrlInputValid = true;
-        return true;
-    } catch (err) {
-        isInputInvalid(urlInput, true);
-        isUrlInputValid = false;
-        return false;
     }
+
+    if (urlInput.value !== '' && !URL_PATTERN.test(urlInput.value)) {
+        isErrorShow(urlInput, true);
+        isUrlInputValid = false;
+    }
+
+    isFormValid();
 }
 
 
-function isInputInvalid(elInput, showError) {
+function isErrorShow(elInput, showError) {
     if (showError) {
         elInput.setAttribute('data-error', '');
     } else {
@@ -56,7 +72,7 @@ function isFormValid() {
 async function fetchForm() {
     (async function () {
         try {
-            let result = await fetch(urlInput.nodeValue, {
+            let result = await fetch(urlInput.value, {
                 method: 'POST',
                 headers: {
                   'Content-Type': 'application/json'
@@ -74,8 +90,6 @@ async function fetchForm() {
     })();
 }
 
-
-emailInput.addEventListener('keyup', validateEmailInput);
-urlInput.addEventListener('keyup', validateUrlInput);
-form.addEventListener('blur', isFormValid, true);
+emailInput.addEventListener('blur', validateEmailInput);
+urlInput.addEventListener('blur', validateUrlInput);
 submitButton.addEventListener("click", fetchForm);

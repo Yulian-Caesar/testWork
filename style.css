@@ -42,6 +42,7 @@ input:focus {
 
 input[data-error] {
     outline: 1px solid #DB4732;
+    color: #DB4732;
 }
 
 /* button start */
